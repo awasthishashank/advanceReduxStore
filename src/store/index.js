@@ -1,8 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
-import uiSlice from "./ui-Slice";
-import cartSlice from "./cart-Slice";
+import { configureStore } from '@reduxjs/toolkit';
+import {thunk} from 'redux-thunk'; // Correctly importing redux-thunk
+import uiReducer from './ui-Slice';
+import cartReducer from './cart-Slice';
 
 const store = configureStore({
-    reducer :{ui : uiSlice.reducer , cart : cartSlice.reducer}
+  reducer: {
+    ui: uiReducer,
+    cart: cartReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(thunk),
 });
-export default store ;
+
+export default store;
